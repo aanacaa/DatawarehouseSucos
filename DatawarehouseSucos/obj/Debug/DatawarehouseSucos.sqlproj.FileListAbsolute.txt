@@ -3,6 +3,7 @@ C:\Users\anaca\OneDrive\Documents\GitHub\DatawarehouseSucos\DatawarehouseSucos\b
 C:\Users\anaca\OneDrive\Documents\GitHub\DatawarehouseSucos\DatawarehouseSucos\bin\Debug\DatawarehouseSucos.pdb
 C:\Users\anaca\OneDrive\Documents\GitHub\DatawarehouseSucos\DatawarehouseSucos\obj\Debug\DatawarehouseSucos.dll
 C:\Users\anaca\OneDrive\Documents\GitHub\DatawarehouseSucos\DatawarehouseSucos\obj\Debug\DatawarehouseSucos.pdb
+C:\Users\anaca\OneDrive\Documents\GitHub\DatawarehouseSucos\DatawarehouseSucos\obj\Debug\DatawarehouseSucos.sqlprojAssemblyReference.cache
 C:\Users\anaca\OneDrive\Documents\GitHub\DatawarehouseSucos\DatawarehouseSucos\obj\Debug\Model.xml
 C:\Users\anaca\OneDrive\Documents\GitHub\DatawarehouseSucos\DatawarehouseSucos\obj\Debug\refactor.xml
 C:\Users\anaca\OneDrive\Documents\GitHub\DatawarehouseSucos\DatawarehouseSucos\obj\Debug\postdeploy.sql
