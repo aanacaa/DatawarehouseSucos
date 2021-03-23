@@ -7,3 +7,12 @@ C:\Users\anaca\OneDrive\Documents\GitHub\DatawarehouseSucos\DatawarehouseSucos\o
 C:\Users\anaca\OneDrive\Documents\GitHub\DatawarehouseSucos\DatawarehouseSucos\obj\Debug\refactor.xml
 C:\Users\anaca\OneDrive\Documents\GitHub\DatawarehouseSucos\DatawarehouseSucos\obj\Debug\postdeploy.sql
 C:\Users\anaca\OneDrive\Documents\GitHub\DatawarehouseSucos\DatawarehouseSucos\obj\Debug\predeploy.sql
+C:\Users\anaca\Documents\Github\DatawarehouseSucos\DatawarehouseSucos\bin\Debug\DatawarehouseSucos.dacpac
+C:\Users\anaca\Documents\Github\DatawarehouseSucos\DatawarehouseSucos\bin\Debug\DatawarehouseSucos.dll
+C:\Users\anaca\Documents\Github\DatawarehouseSucos\DatawarehouseSucos\bin\Debug\DatawarehouseSucos.pdb
+C:\Users\anaca\Documents\Github\DatawarehouseSucos\DatawarehouseSucos\obj\Debug\Model.xml
+C:\Users\anaca\Documents\Github\DatawarehouseSucos\DatawarehouseSucos\obj\Debug\refactor.xml
+C:\Users\anaca\Documents\Github\DatawarehouseSucos\DatawarehouseSucos\obj\Debug\postdeploy.sql
+C:\Users\anaca\Documents\Github\DatawarehouseSucos\DatawarehouseSucos\obj\Debug\predeploy.sql
+C:\Users\anaca\Documents\Github\DatawarehouseSucos\DatawarehouseSucos\obj\Debug\DatawarehouseSucos.dll
+C:\Users\anaca\Documents\Github\DatawarehouseSucos\DatawarehouseSucos\obj\Debug\DatawarehouseSucos.pdb

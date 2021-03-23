@@ -1,0 +1,1681 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="3/17/2021 8:53:40 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="DESKTOP-ROFMV8R"
+  DTS:CreatorName="DESKTOP-ROFMV8R\anaca"
+  DTS:DTSID="{06EB753C-3E06-44CC-9EE8-3D233FC81B97}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.152"
+  DTS:LocaleID="1046"
+  DTS:ObjectName="Package"
+  DTS:PackageType="5"
+  DTS:VersionBuild="12"
+  DTS:VersionGUID="{F347C92C-6B0C-482E-B0B3-928E3C4CE7AD}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Conexão com o Datawarehouse]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{6CAD8384-03C2-4B45-B8D7-AF34080A4FA2}"
+      DTS:ObjectName="Conexão com o Datawarehouse">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=DESKTOP-ROFMV8R;User ID=;Initial Catalog=DW_SUCOS;Provider=MSOLEDBSQL.1;Persist Security Info=False;Integrated Security=SSPI;Initial File Name=;Server SPN=;Authentication=;Access Token=;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Gerenciador de Conexões do Excel]"
+      DTS:CreationName="EXCEL"
+      DTS:DTSID="{5C386478-7D2D-42D1-B88A-316D8356392C}"
+      DTS:ObjectName="Gerenciador de Conexões do Excel">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\anaca\Documents\Github\DatawarehouseSucos\data\CADASTRO DE CLIENTES.xlsx;Extended Properties=&quot;EXCEL 12.0 XML;HDR=YES&quot;;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Criação da Dimensão Cliente"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Tarefa Fluxo de Dados"
+      DTS:DTSID="{DBC7FCA8-40BD-4A92-8314-172815001DBD}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Criação da Dimensão Cliente"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Criação da Dimensão Cliente\Coluna Derivada"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Coluna Derivada;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos os Direitos Reservados; http://www.microsoft.com/sql/support;0"
+              description="Cria novos valores de coluna aplicando expressões a colunas de entrada da transformação. Crie novas colunas ou substitua as existentes. Por exemplo, concatene os valores das colunas 'first name' e 'last name' para formar uma coluna 'full name'."
+              name="Coluna Derivada"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Criação da Dimensão Cliente\Coluna Derivada.Inputs[Entrada de Coluna Derivada]"
+                  description="Entrada para a Transformação Coluna Derivada"
+                  name="Entrada de Coluna Derivada">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Criação da Dimensão Cliente\Coluna Derivada.Outputs[Saída de Coluna Derivada]"
+                  description="Saída Padrão da Transformação Coluna Derivada"
+                  exclusionGroup="1"
+                  name="Saída de Coluna Derivada"
+                  synchronousInputId="Package\Criação da Dimensão Cliente\Coluna Derivada.Inputs[Entrada de Coluna Derivada]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Criação da Dimensão Cliente\Coluna Derivada.Outputs[Saída de Erro de Coluna Derivada]"
+                  description="Saída de Erro da Transformação Coluna Derivada"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Saída de Erro de Coluna Derivada"
+                  synchronousInputId="Package\Criação da Dimensão Cliente\Coluna Derivada.Inputs[Entrada de Coluna Derivada]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Criação da Dimensão Cliente\Coluna Derivada.Outputs[Saída de Erro de Coluna Derivada].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Criação da Dimensão Cliente\Coluna Derivada.Outputs[Saída de Erro de Coluna Derivada].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Criação da Dimensão Cliente\Coluna Derivada.Outputs[Saída de Erro de Coluna Derivada].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Criação da Dimensão Cliente\Coluna Derivada.Outputs[Saída de Erro de Coluna Derivada].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Criação da Dimensão Cliente\Extração da Cidadade e do Estado separados"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Coluna Derivada;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos os Direitos Reservados; http://www.microsoft.com/sql/support;0"
+              description="Cria novos valores de coluna aplicando expressões a colunas de entrada da transformação. Crie novas colunas ou substitua as existentes. Por exemplo, concatene os valores das colunas 'first name' e 'last name' para formar uma coluna 'full name'."
+              name="Extração da Cidadade e do Estado separados"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Criação da Dimensão Cliente\Extração da Cidadade e do Estado separados.Inputs[Entrada de Coluna Derivada]"
+                  description="Entrada para a Transformação Coluna Derivada"
+                  name="Entrada de Coluna Derivada">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Criação da Dimensão Cliente\Extração da Cidadade e do Estado separados.Inputs[Entrada de Coluna Derivada].Columns[CIDADE_ESTADO]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="CIDADE_ESTADO"
+                      lineageId="Package\Criação da Dimensão Cliente\Extração de Cidade e Estado juntos.Outputs[Saída de Coluna Derivada].Columns[CIDADE_ESTADO]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Criação da Dimensão Cliente\Extração da Cidadade e do Estado separados.Outputs[Saída de Coluna Derivada]"
+                  description="Saída Padrão da Transformação Coluna Derivada"
+                  exclusionGroup="1"
+                  name="Saída de Coluna Derivada"
+                  synchronousInputId="Package\Criação da Dimensão Cliente\Extração da Cidadade e do Estado separados.Inputs[Entrada de Coluna Derivada]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Criação da Dimensão Cliente\Extração da Cidadade e do Estado separados.Outputs[Saída de Coluna Derivada].Columns[CIDADE]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Computação"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\Criação da Dimensão Cliente\Extração da Cidadade e do Estado separados.Outputs[Saída de Coluna Derivada].Columns[CIDADE]"
+                      name="CIDADE"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Expressão de Coluna Derivada"
+                          name="Expression">[SUBSTRING](#{Package\Criação da Dimensão Cliente\Extração de Cidade e Estado juntos.Outputs[Saída de Coluna Derivada].Columns[CIDADE_ESTADO]},1,[FINDSTRING](#{Package\Criação da Dimensão Cliente\Extração de Cidade e Estado juntos.Outputs[Saída de Coluna Derivada].Columns[CIDADE_ESTADO]},"-",1) - 2)</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Expressão Amigável de Coluna Derivada"
+                          expressionType="Notify"
+                          name="FriendlyExpression">SUBSTRING(CIDADE_ESTADO,1,FINDSTRING(CIDADE_ESTADO,"-",1) - 2)</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Criação da Dimensão Cliente\Extração da Cidadade e do Estado separados.Outputs[Saída de Coluna Derivada].Columns[ESTADO]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Computação"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\Criação da Dimensão Cliente\Extração da Cidadade e do Estado separados.Outputs[Saída de Coluna Derivada].Columns[ESTADO]"
+                      name="ESTADO"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Expressão de Coluna Derivada"
+                          name="Expression">[SUBSTRING](#{Package\Criação da Dimensão Cliente\Extração de Cidade e Estado juntos.Outputs[Saída de Coluna Derivada].Columns[CIDADE_ESTADO]},[FINDSTRING](#{Package\Criação da Dimensão Cliente\Extração de Cidade e Estado juntos.Outputs[Saída de Coluna Derivada].Columns[CIDADE_ESTADO]},"-",1) + 2,50)</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Expressão Amigável de Coluna Derivada"
+                          expressionType="Notify"
+                          name="FriendlyExpression">SUBSTRING(CIDADE_ESTADO,FINDSTRING(CIDADE_ESTADO,"-",1) + 2,50)</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Criação da Dimensão Cliente\Extração da Cidadade e do Estado separados.Outputs[Saída de Erro de Coluna Derivada]"
+                  description="Saída de Erro da Transformação Coluna Derivada"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Saída de Erro de Coluna Derivada"
+                  synchronousInputId="Package\Criação da Dimensão Cliente\Extração da Cidadade e do Estado separados.Inputs[Entrada de Coluna Derivada]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Criação da Dimensão Cliente\Extração da Cidadade e do Estado separados.Outputs[Saída de Erro de Coluna Derivada].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Criação da Dimensão Cliente\Extração da Cidadade e do Estado separados.Outputs[Saída de Erro de Coluna Derivada].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Criação da Dimensão Cliente\Extração da Cidadade e do Estado separados.Outputs[Saída de Erro de Coluna Derivada].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Criação da Dimensão Cliente\Extração da Cidadade e do Estado separados.Outputs[Saída de Erro de Coluna Derivada].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Criação da Dimensão Cliente\Extração de Cidade e Estado juntos"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Coluna Derivada;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos os Direitos Reservados; http://www.microsoft.com/sql/support;0"
+              description="Cria novos valores de coluna aplicando expressões a colunas de entrada da transformação. Crie novas colunas ou substitua as existentes. Por exemplo, concatene os valores das colunas 'first name' e 'last name' para formar uma coluna 'full name'."
+              name="Extração de Cidade e Estado juntos"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Criação da Dimensão Cliente\Extração de Cidade e Estado juntos.Inputs[Entrada de Coluna Derivada]"
+                  description="Entrada para a Transformação Coluna Derivada"
+                  name="Entrada de Coluna Derivada">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Criação da Dimensão Cliente\Extração de Cidade e Estado juntos.Inputs[Entrada de Coluna Derivada].Columns[ENDERECO]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="ENDERECO"
+                      lineageId="Package\Criação da Dimensão Cliente\Planilha de Clientes.Outputs[Saída de Origem do Excel].Columns[ENDERECO]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Criação da Dimensão Cliente\Extração de Cidade e Estado juntos.Outputs[Saída de Coluna Derivada]"
+                  description="Saída Padrão da Transformação Coluna Derivada"
+                  exclusionGroup="1"
+                  name="Saída de Coluna Derivada"
+                  synchronousInputId="Package\Criação da Dimensão Cliente\Extração de Cidade e Estado juntos.Inputs[Entrada de Coluna Derivada]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Criação da Dimensão Cliente\Extração de Cidade e Estado juntos.Outputs[Saída de Coluna Derivada].Columns[CIDADE_ESTADO]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Computação"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\Criação da Dimensão Cliente\Extração de Cidade e Estado juntos.Outputs[Saída de Coluna Derivada].Columns[CIDADE_ESTADO]"
+                      name="CIDADE_ESTADO"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Expressão de Coluna Derivada"
+                          name="Expression">[SUBSTRING](#{Package\Criação da Dimensão Cliente\Planilha de Clientes.Outputs[Saída de Origem do Excel].Columns[ENDERECO]},[FINDSTRING](#{Package\Criação da Dimensão Cliente\Planilha de Clientes.Outputs[Saída de Origem do Excel].Columns[ENDERECO]},"-",1) + 2,50)</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Expressão Amigável de Coluna Derivada"
+                          expressionType="Notify"
+                          name="FriendlyExpression">SUBSTRING(ENDERECO,FINDSTRING(ENDERECO,"-",1) + 2,50)</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Criação da Dimensão Cliente\Extração de Cidade e Estado juntos.Outputs[Saída de Erro de Coluna Derivada]"
+                  description="Saída de Erro da Transformação Coluna Derivada"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Saída de Erro de Coluna Derivada"
+                  synchronousInputId="Package\Criação da Dimensão Cliente\Extração de Cidade e Estado juntos.Inputs[Entrada de Coluna Derivada]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Criação da Dimensão Cliente\Extração de Cidade e Estado juntos.Outputs[Saída de Erro de Coluna Derivada].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Criação da Dimensão Cliente\Extração de Cidade e Estado juntos.Outputs[Saída de Erro de Coluna Derivada].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Criação da Dimensão Cliente\Extração de Cidade e Estado juntos.Outputs[Saída de Erro de Coluna Derivada].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Criação da Dimensão Cliente\Extração de Cidade e Estado juntos.Outputs[Saída de Erro de Coluna Derivada].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Criação da Dimensão Cliente\Planilha de Clientes"
+              componentClassID="Microsoft.ExcelSource"
+              contactInfo="Origem do Excel;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos os Direitos Reservados; http://www.microsoft.com/sql/support;1"
+              description="Origem do Excel"
+              name="Planilha de Clientes"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="O tempo em segundos antes que um comando expire. Zero indica uma expiração infinita."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica o nome do objeto de banco de dados usado para abrir um conjunto de linhas."
+                  name="OpenRowset">CLIENTES$</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica a variável que contém o nome do objeto de banco de dados usado para abrir um conjunto de linhas."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="O comando SQL a ser executado."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="A variável que contém o comando SQL a ser executado."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica o modo usado para acessar o banco de dados."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="O mapeamento de parâmetros no comando SQL para variáveis."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Criação da Dimensão Cliente\Planilha de Clientes.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Gerenciador de Conexões do Excel]"
+                  connectionManagerRefId="Package.ConnectionManagers[Gerenciador de Conexões do Excel]"
+                  description="A conexão de tempo de execução OLE DB usada para acessar o banco de dados."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Criação da Dimensão Cliente\Planilha de Clientes.Outputs[Saída de Origem do Excel]"
+                  name="Saída de Origem do Excel">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Criação da Dimensão Cliente\Planilha de Clientes.Outputs[Saída de Origem do Excel].Columns[ID_CLIENTE]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Criação da Dimensão Cliente\Planilha de Clientes.Outputs[Saída de Origem do Excel].ExternalColumns[ID_CLIENTE]"
+                      lineageId="Package\Criação da Dimensão Cliente\Planilha de Clientes.Outputs[Saída de Origem do Excel].Columns[ID_CLIENTE]"
+                      name="ID_CLIENTE"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Criação da Dimensão Cliente\Planilha de Clientes.Outputs[Saída de Origem do Excel].Columns[CLIENTE]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Criação da Dimensão Cliente\Planilha de Clientes.Outputs[Saída de Origem do Excel].ExternalColumns[CLIENTE]"
+                      length="255"
+                      lineageId="Package\Criação da Dimensão Cliente\Planilha de Clientes.Outputs[Saída de Origem do Excel].Columns[CLIENTE]"
+                      name="CLIENTE"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Criação da Dimensão Cliente\Planilha de Clientes.Outputs[Saída de Origem do Excel].Columns[ENDERECO]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Criação da Dimensão Cliente\Planilha de Clientes.Outputs[Saída de Origem do Excel].ExternalColumns[ENDERECO]"
+                      length="255"
+                      lineageId="Package\Criação da Dimensão Cliente\Planilha de Clientes.Outputs[Saída de Origem do Excel].Columns[ENDERECO]"
+                      name="ENDERECO"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Criação da Dimensão Cliente\Planilha de Clientes.Outputs[Saída de Origem do Excel].Columns[VENDEDOR]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Criação da Dimensão Cliente\Planilha de Clientes.Outputs[Saída de Origem do Excel].ExternalColumns[VENDEDOR]"
+                      lineageId="Package\Criação da Dimensão Cliente\Planilha de Clientes.Outputs[Saída de Origem do Excel].Columns[VENDEDOR]"
+                      name="VENDEDOR"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Criação da Dimensão Cliente\Planilha de Clientes.Outputs[Saída de Origem do Excel].Columns[NOME VENDEDOR]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Criação da Dimensão Cliente\Planilha de Clientes.Outputs[Saída de Origem do Excel].ExternalColumns[NOME VENDEDOR]"
+                      length="255"
+                      lineageId="Package\Criação da Dimensão Cliente\Planilha de Clientes.Outputs[Saída de Origem do Excel].Columns[NOME VENDEDOR]"
+                      name="NOME VENDEDOR"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Criação da Dimensão Cliente\Planilha de Clientes.Outputs[Saída de Origem do Excel].Columns[SEGMENTO]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Criação da Dimensão Cliente\Planilha de Clientes.Outputs[Saída de Origem do Excel].ExternalColumns[SEGMENTO]"
+                      length="255"
+                      lineageId="Package\Criação da Dimensão Cliente\Planilha de Clientes.Outputs[Saída de Origem do Excel].Columns[SEGMENTO]"
+                      name="SEGMENTO"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Criação da Dimensão Cliente\Planilha de Clientes.Outputs[Saída de Origem do Excel].ExternalColumns[ID_CLIENTE]"
+                      dataType="r8"
+                      name="ID_CLIENTE" />
+                    <externalMetadataColumn
+                      refId="Package\Criação da Dimensão Cliente\Planilha de Clientes.Outputs[Saída de Origem do Excel].ExternalColumns[CLIENTE]"
+                      dataType="wstr"
+                      length="255"
+                      name="CLIENTE" />
+                    <externalMetadataColumn
+                      refId="Package\Criação da Dimensão Cliente\Planilha de Clientes.Outputs[Saída de Origem do Excel].ExternalColumns[ENDERECO]"
+                      dataType="wstr"
+                      length="255"
+                      name="ENDERECO" />
+                    <externalMetadataColumn
+                      refId="Package\Criação da Dimensão Cliente\Planilha de Clientes.Outputs[Saída de Origem do Excel].ExternalColumns[VENDEDOR]"
+                      dataType="r8"
+                      name="VENDEDOR" />
+                    <externalMetadataColumn
+                      refId="Package\Criação da Dimensão Cliente\Planilha de Clientes.Outputs[Saída de Origem do Excel].ExternalColumns[NOME VENDEDOR]"
+                      dataType="wstr"
+                      length="255"
+                      name="NOME VENDEDOR" />
+                    <externalMetadataColumn
+                      refId="Package\Criação da Dimensão Cliente\Planilha de Clientes.Outputs[Saída de Origem do Excel].ExternalColumns[SEGMENTO]"
+                      dataType="wstr"
+                      length="255"
+                      name="SEGMENTO" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Criação da Dimensão Cliente\Planilha de Clientes.Outputs[Saída de Erro de Origem do Excel]"
+                  isErrorOut="true"
+                  name="Saída de Erro de Origem do Excel">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Criação da Dimensão Cliente\Planilha de Clientes.Outputs[Saída de Erro de Origem do Excel].Columns[ID_CLIENTE]"
+                      dataType="r8"
+                      lineageId="Package\Criação da Dimensão Cliente\Planilha de Clientes.Outputs[Saída de Erro de Origem do Excel].Columns[ID_CLIENTE]"
+                      name="ID_CLIENTE" />
+                    <outputColumn
+                      refId="Package\Criação da Dimensão Cliente\Planilha de Clientes.Outputs[Saída de Erro de Origem do Excel].Columns[CLIENTE]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Criação da Dimensão Cliente\Planilha de Clientes.Outputs[Saída de Erro de Origem do Excel].Columns[CLIENTE]"
+                      name="CLIENTE" />
+                    <outputColumn
+                      refId="Package\Criação da Dimensão Cliente\Planilha de Clientes.Outputs[Saída de Erro de Origem do Excel].Columns[ENDERECO]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Criação da Dimensão Cliente\Planilha de Clientes.Outputs[Saída de Erro de Origem do Excel].Columns[ENDERECO]"
+                      name="ENDERECO" />
+                    <outputColumn
+                      refId="Package\Criação da Dimensão Cliente\Planilha de Clientes.Outputs[Saída de Erro de Origem do Excel].Columns[VENDEDOR]"
+                      dataType="r8"
+                      lineageId="Package\Criação da Dimensão Cliente\Planilha de Clientes.Outputs[Saída de Erro de Origem do Excel].Columns[VENDEDOR]"
+                      name="VENDEDOR" />
+                    <outputColumn
+                      refId="Package\Criação da Dimensão Cliente\Planilha de Clientes.Outputs[Saída de Erro de Origem do Excel].Columns[NOME VENDEDOR]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Criação da Dimensão Cliente\Planilha de Clientes.Outputs[Saída de Erro de Origem do Excel].Columns[NOME VENDEDOR]"
+                      name="NOME VENDEDOR" />
+                    <outputColumn
+                      refId="Package\Criação da Dimensão Cliente\Planilha de Clientes.Outputs[Saída de Erro de Origem do Excel].Columns[SEGMENTO]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Criação da Dimensão Cliente\Planilha de Clientes.Outputs[Saída de Erro de Origem do Excel].Columns[SEGMENTO]"
+                      name="SEGMENTO" />
+                    <outputColumn
+                      refId="Package\Criação da Dimensão Cliente\Planilha de Clientes.Outputs[Saída de Erro de Origem do Excel].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Criação da Dimensão Cliente\Planilha de Clientes.Outputs[Saída de Erro de Origem do Excel].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Criação da Dimensão Cliente\Planilha de Clientes.Outputs[Saída de Erro de Origem do Excel].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Criação da Dimensão Cliente\Planilha de Clientes.Outputs[Saída de Erro de Origem do Excel].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Criação da Dimensão Cliente.Paths[Saída de Coluna Derivada]"
+              endId="Package\Criação da Dimensão Cliente\Extração da Cidadade e do Estado separados.Inputs[Entrada de Coluna Derivada]"
+              name="Saída de Coluna Derivada"
+              startId="Package\Criação da Dimensão Cliente\Extração de Cidade e Estado juntos.Outputs[Saída de Coluna Derivada]" />
+            <path
+              refId="Package\Criação da Dimensão Cliente.Paths[Saída de Coluna Derivada1]"
+              endId="Package\Criação da Dimensão Cliente\Coluna Derivada.Inputs[Entrada de Coluna Derivada]"
+              name="Saída de Coluna Derivada"
+              startId="Package\Criação da Dimensão Cliente\Extração da Cidadade e do Estado separados.Outputs[Saída de Coluna Derivada]" />
+            <path
+              refId="Package\Criação da Dimensão Cliente.Paths[Saída de Origem do Excel]"
+              endId="Package\Criação da Dimensão Cliente\Extração de Cidade e Estado juntos.Inputs[Entrada de Coluna Derivada]"
+              name="Saída de Origem do Excel"
+              startId="Package\Criação da Dimensão Cliente\Planilha de Clientes.Outputs[Saída de Origem do Excel]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Criação da Dimensão Fábrica"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Tarefa Fluxo de Dados"
+      DTS:Disabled="True"
+      DTS:DTSID="{256A1612-3D99-4144-B316-F59293C90742}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Criação da Dimensão Fábrica"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Criação da Dimensão Fábrica\Comando OLE DB"
+              componentClassID="Microsoft.OLEDBCommand"
+              contactInfo="Comando OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos os Direitos Reservados; http://www.microsoft.com/sql/support;2"
+              description="Executa uma instrução SQL para cada linha em um fluxo de dados. Por exemplo, chame um procedimento armazenado 'new employee setup' para cada linha da tabela 'new employees'. Observação: a execução de uma instrução SQL para cada linha de um fluxo de dados grande pode demorar."
+              name="Comando OLE DB"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="O tempo em segundos antes que um comando expire. Zero indica uma expiração infinita."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="O comando SQL a ser executado."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">UPDATE [dbo].[Dim_Fabrica] SET [Desc_Fabrica] = ? WHERE [Cod_Fabrica] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica a página de código de coluna a ser usada quando não há informações de página de código disponíveis a partir da fonte de dados."
+                  name="DefaultCodePage">1252</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Criação da Dimensão Fábrica\Comando OLE DB.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Conexão com o Datawarehouse]"
+                  connectionManagerRefId="Package.ConnectionManagers[Conexão com o Datawarehouse]"
+                  description="A conexão de tempo de execução OLE DB usada para acessar o banco de dados."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Criação da Dimensão Fábrica\Comando OLE DB.Inputs[Entrada de Comando OLE DB]"
+                  errorOrTruncationOperation="Execução de Comando"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Entrada de Comando OLE DB">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Criação da Dimensão Fábrica\Comando OLE DB.Inputs[Entrada de Comando OLE DB].Columns[Cod_Fabrica]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Cod_Fabrica"
+                      externalMetadataColumnId="Package\Criação da Dimensão Fábrica\Comando OLE DB.Inputs[Entrada de Comando OLE DB].ExternalColumns[Param_1]"
+                      lineageId="Package\Criação da Dimensão Fábrica\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[Cod_Fabrica]" />
+                    <inputColumn
+                      refId="Package\Criação da Dimensão Fábrica\Comando OLE DB.Inputs[Entrada de Comando OLE DB].Columns[Desc_Fabrica]"
+                      cachedDataType="wstr"
+                      cachedLength="200"
+                      cachedName="Desc_Fabrica"
+                      externalMetadataColumnId="Package\Criação da Dimensão Fábrica\Comando OLE DB.Inputs[Entrada de Comando OLE DB].ExternalColumns[Param_0]"
+                      lineageId="Package\Criação da Dimensão Fábrica\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[Desc_Fabrica]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Criação da Dimensão Fábrica\Comando OLE DB.Inputs[Entrada de Comando OLE DB].ExternalColumns[Param_0]"
+                      dataType="wstr"
+                      length="200"
+                      name="Param_0">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Informações de parâmetro. Corresponde os valores de DBPARAMFLAGSENUM de OLE DB."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Criação da Dimensão Fábrica\Comando OLE DB.Inputs[Entrada de Comando OLE DB].ExternalColumns[Param_1]"
+                      dataType="wstr"
+                      length="50"
+                      name="Param_1">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Informações de parâmetro. Corresponde os valores de DBPARAMFLAGSENUM de OLE DB."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Criação da Dimensão Fábrica\Comando OLE DB.Outputs[Saída de Comando OLE DB]"
+                  exclusionGroup="1"
+                  name="Saída de Comando OLE DB"
+                  synchronousInputId="Package\Criação da Dimensão Fábrica\Comando OLE DB.Inputs[Entrada de Comando OLE DB]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Criação da Dimensão Fábrica\Comando OLE DB.Outputs[Saída de Erro de Comando OLE DB]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Saída de Erro de Comando OLE DB"
+                  synchronousInputId="Package\Criação da Dimensão Fábrica\Comando OLE DB.Inputs[Entrada de Comando OLE DB]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Criação da Dimensão Fábrica\Comando OLE DB.Outputs[Saída de Erro de Comando OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Criação da Dimensão Fábrica\Comando OLE DB.Outputs[Saída de Erro de Comando OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Criação da Dimensão Fábrica\Comando OLE DB.Outputs[Saída de Erro de Comando OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Criação da Dimensão Fábrica\Comando OLE DB.Outputs[Saída de Erro de Comando OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Criação da Dimensão Fábrica\Comando OLE DB 1"
+              componentClassID="Microsoft.OLEDBCommand"
+              contactInfo="Comando OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos os Direitos Reservados; http://www.microsoft.com/sql/support;2"
+              description="Executa uma instrução SQL para cada linha em um fluxo de dados. Por exemplo, chame um procedimento armazenado 'new employee setup' para cada linha da tabela 'new employees'. Observação: a execução de uma instrução SQL para cada linha de um fluxo de dados grande pode demorar."
+              name="Comando OLE DB 1"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="O tempo em segundos antes que um comando expire. Zero indica uma expiração infinita."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="O comando SQL a ser executado."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">UPDATE [dbo].[Dim_Fabrica] SET [Desc_Fabrica] = ? WHERE [Cod_Fabrica] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica a página de código de coluna a ser usada quando não há informações de página de código disponíveis a partir da fonte de dados."
+                  name="DefaultCodePage">1252</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Criação da Dimensão Fábrica\Comando OLE DB 1.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Conexão com o Datawarehouse]"
+                  connectionManagerRefId="Package.ConnectionManagers[Conexão com o Datawarehouse]"
+                  description="A conexão de tempo de execução OLE DB usada para acessar o banco de dados."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Criação da Dimensão Fábrica\Comando OLE DB 1.Inputs[Entrada de Comando OLE DB]"
+                  errorOrTruncationOperation="Execução de Comando"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Entrada de Comando OLE DB">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Criação da Dimensão Fábrica\Comando OLE DB 1.Inputs[Entrada de Comando OLE DB].Columns[Cod_Fabrica]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Cod_Fabrica"
+                      externalMetadataColumnId="Package\Criação da Dimensão Fábrica\Comando OLE DB 1.Inputs[Entrada de Comando OLE DB].ExternalColumns[Param_1]"
+                      lineageId="Package\Criação da Dimensão Fábrica\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[Cod_Fabrica]" />
+                    <inputColumn
+                      refId="Package\Criação da Dimensão Fábrica\Comando OLE DB 1.Inputs[Entrada de Comando OLE DB].Columns[Desc_Fabrica]"
+                      cachedDataType="wstr"
+                      cachedLength="200"
+                      cachedName="Desc_Fabrica"
+                      externalMetadataColumnId="Package\Criação da Dimensão Fábrica\Comando OLE DB 1.Inputs[Entrada de Comando OLE DB].ExternalColumns[Param_0]"
+                      lineageId="Package\Criação da Dimensão Fábrica\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[Desc_Fabrica]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Criação da Dimensão Fábrica\Comando OLE DB 1.Inputs[Entrada de Comando OLE DB].ExternalColumns[Param_0]"
+                      dataType="wstr"
+                      length="200"
+                      name="Param_0">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Informações de parâmetro. Corresponde os valores de DBPARAMFLAGSENUM de OLE DB."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Criação da Dimensão Fábrica\Comando OLE DB 1.Inputs[Entrada de Comando OLE DB].ExternalColumns[Param_1]"
+                      dataType="wstr"
+                      length="50"
+                      name="Param_1">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Informações de parâmetro. Corresponde os valores de DBPARAMFLAGSENUM de OLE DB."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Criação da Dimensão Fábrica\Comando OLE DB 1.Outputs[Saída de Comando OLE DB]"
+                  exclusionGroup="1"
+                  name="Saída de Comando OLE DB"
+                  synchronousInputId="Package\Criação da Dimensão Fábrica\Comando OLE DB 1.Inputs[Entrada de Comando OLE DB]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Criação da Dimensão Fábrica\Comando OLE DB 1.Outputs[Saída de Erro de Comando OLE DB]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Saída de Erro de Comando OLE DB"
+                  synchronousInputId="Package\Criação da Dimensão Fábrica\Comando OLE DB 1.Inputs[Entrada de Comando OLE DB]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Criação da Dimensão Fábrica\Comando OLE DB 1.Outputs[Saída de Erro de Comando OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Criação da Dimensão Fábrica\Comando OLE DB 1.Outputs[Saída de Erro de Comando OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Criação da Dimensão Fábrica\Comando OLE DB 1.Outputs[Saída de Erro de Comando OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Criação da Dimensão Fábrica\Comando OLE DB 1.Outputs[Saída de Erro de Comando OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Criação da Dimensão Fábrica\Conversão de Dados"
+              componentClassID="Microsoft.DataConvert"
+              contactInfo="Conversão de Dados;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos os Direitos Reservados; http://www.microsoft.com/sql/support;0"
+              description="Conversão de Dados"
+              name="Conversão de Dados"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Criação da Dimensão Fábrica\Conversão de Dados.Inputs[Entrada de Conversão de Dados]"
+                  name="Entrada de Conversão de Dados">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Criação da Dimensão Fábrica\Conversão de Dados.Inputs[Entrada de Conversão de Dados].Columns[CODIGO]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="3"
+                      cachedName="CODIGO"
+                      lineageId="Package\Criação da Dimensão Fábrica\Execucao Consulta SQL.Outputs[Saída de Origem OLE DB].Columns[CODIGO]" />
+                    <inputColumn
+                      refId="Package\Criação da Dimensão Fábrica\Conversão de Dados.Inputs[Entrada de Conversão de Dados].Columns[DESCRITOR]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="22"
+                      cachedName="DESCRITOR"
+                      lineageId="Package\Criação da Dimensão Fábrica\Execucao Consulta SQL.Outputs[Saída de Origem OLE DB].Columns[DESCRITOR]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Criação da Dimensão Fábrica\Conversão de Dados.Outputs[Saída de Conversão de Dados]"
+                  exclusionGroup="1"
+                  name="Saída de Conversão de Dados"
+                  synchronousInputId="Package\Criação da Dimensão Fábrica\Conversão de Dados.Inputs[Entrada de Conversão de Dados]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Criação da Dimensão Fábrica\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[Cod_Fabrica]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\Criação da Dimensão Fábrica\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[Cod_Fabrica]"
+                      name="Cod_Fabrica"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica a coluna de entrada usada como a origem dois dados para a conversão."
+                          name="SourceInputColumnLineageID">#{Package\Criação da Dimensão Fábrica\Execucao Consulta SQL.Outputs[Saída de Origem OLE DB].Columns[CODIGO]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica se a coluna usa as rotinas de análise de localidade neutro mais rápidas."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Criação da Dimensão Fábrica\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[Desc_Fabrica]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="FailComponent"
+                      length="200"
+                      lineageId="Package\Criação da Dimensão Fábrica\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[Desc_Fabrica]"
+                      name="Desc_Fabrica"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica a coluna de entrada usada como a origem dois dados para a conversão."
+                          name="SourceInputColumnLineageID">#{Package\Criação da Dimensão Fábrica\Execucao Consulta SQL.Outputs[Saída de Origem OLE DB].Columns[DESCRITOR]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica se a coluna usa as rotinas de análise de localidade neutro mais rápidas."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Criação da Dimensão Fábrica\Conversão de Dados.Outputs[Saída de Erro de Conversão de Dados]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Saída de Erro de Conversão de Dados"
+                  synchronousInputId="Package\Criação da Dimensão Fábrica\Conversão de Dados.Inputs[Entrada de Conversão de Dados]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Criação da Dimensão Fábrica\Conversão de Dados.Outputs[Saída de Erro de Conversão de Dados].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Criação da Dimensão Fábrica\Conversão de Dados.Outputs[Saída de Erro de Conversão de Dados].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Criação da Dimensão Fábrica\Conversão de Dados.Outputs[Saída de Erro de Conversão de Dados].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Criação da Dimensão Fábrica\Conversão de Dados.Outputs[Saída de Erro de Conversão de Dados].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Criação da Dimensão Fábrica\Dimensão de Alteração Lenta"
+              componentClassID="Microsoft.SCD"
+              contactInfo="Dimensão de Alteração Lenta;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos os Direitos Reservados; http://www.microsoft.com/sql/support;3"
+              description="Atualiza uma dimensão de data warehouse do SQL Server Analysis Services. Atualize registros da dimensão que já estejam presentes e insira os registros que não estão. Por exemplo, atualize a tabela DimProduct do banco de dados OLAP AdventureWorksDW com dados da tabela Products do banco de dados OLTP AdventureWorks."
+              name="Dimensão de Alteração Lenta"
+              version="3">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Especifica a instrução SELECT usada para criar um conjunto de linhas de esquema."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT [Cod_Fabrica], [Desc_Fabrica] FROM [dbo].[Dim_Fabrica]</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica a cláusula WHERE na instrução SELECT que seleciona a linha atual entre as linhas com chaves de negócios idênticas."
+                  name="CurrentRowWhere"></property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica se as atualizações de atributo de histórico são direcionadas para a saída de transformação para atualizações de atributo de alteração."
+                  name="UpdateChangingAttributeHistory">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica se a transformação falhará quando as colunas com atributos fixos contiverem alterações."
+                  name="FailOnFixedAttributeChange">false</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica o nome da coluna para o membro inferido."
+                  name="InferredMemberIndicator"></property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica se as atualizações de membro inferido são detectadas."
+                  name="EnableInferredMember">true</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica se a transformação falhará quando uma pesquisa de registro existente falhar."
+                  name="FailOnLookupFailure">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica que todas as linhas na entrada são novas ou a transformação detecta o tipo de alteração."
+                  name="IncomingRowChangeType"
+                  typeConverter="IncomingRowChangeType">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica a página de código de coluna a ser usada quando não há informações de página de código disponíveis a partir da fonte de dados."
+                  name="DefaultCodePage">1252</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Criação da Dimensão Fábrica\Dimensão de Alteração Lenta.Connections[LookupConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Conexão com o Datawarehouse]"
+                  connectionManagerRefId="Package.ConnectionManagers[Conexão com o Datawarehouse]"
+                  description="Define a conexão a ser usada para pesquisas na tabela de dimensão"
+                  name="LookupConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Criação da Dimensão Fábrica\Dimensão de Alteração Lenta.Inputs[Entrada de Dimensão de Alteração Lenta]"
+                  name="Entrada de Dimensão de Alteração Lenta">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Criação da Dimensão Fábrica\Dimensão de Alteração Lenta.Inputs[Entrada de Dimensão de Alteração Lenta].Columns[Cod_Fabrica]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Cod_Fabrica"
+                      externalMetadataColumnId="Package\Criação da Dimensão Fábrica\Dimensão de Alteração Lenta.Inputs[Entrada de Dimensão de Alteração Lenta].ExternalColumns[Cod_Fabrica]"
+                      lineageId="Package\Criação da Dimensão Fábrica\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[Cod_Fabrica]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          name="ColumnType"
+                          typeConverter="ColumnType">1</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Criação da Dimensão Fábrica\Dimensão de Alteração Lenta.Inputs[Entrada de Dimensão de Alteração Lenta].Columns[Desc_Fabrica]"
+                      cachedDataType="wstr"
+                      cachedLength="200"
+                      cachedName="Desc_Fabrica"
+                      externalMetadataColumnId="Package\Criação da Dimensão Fábrica\Dimensão de Alteração Lenta.Inputs[Entrada de Dimensão de Alteração Lenta].ExternalColumns[Desc_Fabrica]"
+                      lineageId="Package\Criação da Dimensão Fábrica\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[Desc_Fabrica]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          name="ColumnType"
+                          typeConverter="ColumnType">2</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Criação da Dimensão Fábrica\Dimensão de Alteração Lenta.Inputs[Entrada de Dimensão de Alteração Lenta].ExternalColumns[Cod_Fabrica]"
+                      dataType="wstr"
+                      length="50"
+                      name="Cod_Fabrica" />
+                    <externalMetadataColumn
+                      refId="Package\Criação da Dimensão Fábrica\Dimensão de Alteração Lenta.Inputs[Entrada de Dimensão de Alteração Lenta].ExternalColumns[Desc_Fabrica]"
+                      dataType="wstr"
+                      length="200"
+                      name="Desc_Fabrica" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Criação da Dimensão Fábrica\Dimensão de Alteração Lenta.Outputs[Saída Inalterada]"
+                  description="Linhas inalteradas"
+                  exclusionGroup="1"
+                  name="Saída Inalterada"
+                  synchronousInputId="Package\Criação da Dimensão Fábrica\Dimensão de Alteração Lenta.Inputs[Entrada de Dimensão de Alteração Lenta]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Criação da Dimensão Fábrica\Dimensão de Alteração Lenta.Outputs[Nova Saída]"
+                  description="Novas linhas"
+                  exclusionGroup="1"
+                  name="Nova Saída"
+                  synchronousInputId="Package\Criação da Dimensão Fábrica\Dimensão de Alteração Lenta.Inputs[Entrada de Dimensão de Alteração Lenta]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Criação da Dimensão Fábrica\Dimensão de Alteração Lenta.Outputs[Saída de Atributo Fixo]"
+                  description="Linhas com alterações em colunas marcadas com FixedAttribute"
+                  exclusionGroup="1"
+                  name="Saída de Atributo Fixo"
+                  synchronousInputId="Package\Criação da Dimensão Fábrica\Dimensão de Alteração Lenta.Inputs[Entrada de Dimensão de Alteração Lenta]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Criação da Dimensão Fábrica\Dimensão de Alteração Lenta.Outputs[Saída de Atualizações de Atributo de Alteração]"
+                  description="Essas linhas contêm novas informações para as alterações da coluna ChangingAttribute (Type 1)"
+                  exclusionGroup="1"
+                  name="Saída de Atualizações de Atributo de Alteração"
+                  synchronousInputId="Package\Criação da Dimensão Fábrica\Dimensão de Alteração Lenta.Inputs[Entrada de Dimensão de Alteração Lenta]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Criação da Dimensão Fábrica\Dimensão de Alteração Lenta.Outputs[Saída de Inserções de Atributo de Histórico]"
+                  description="O resultado de alterações de HistoricalAttribute (Type 2) nessas novas linhas"
+                  exclusionGroup="2"
+                  name="Saída de Inserções de Atributo de Histórico"
+                  synchronousInputId="Package\Criação da Dimensão Fábrica\Dimensão de Alteração Lenta.Inputs[Entrada de Dimensão de Alteração Lenta]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Criação da Dimensão Fábrica\Dimensão de Alteração Lenta.Outputs[Saída de Atualizações de Membro Inferido]"
+                  description="Informações para atualizar a linha de dimensão inicial sem preenchimento"
+                  exclusionGroup="1"
+                  name="Saída de Atualizações de Membro Inferido"
+                  synchronousInputId="Package\Criação da Dimensão Fábrica\Dimensão de Alteração Lenta.Inputs[Entrada de Dimensão de Alteração Lenta]">
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Criação da Dimensão Fábrica\Execucao Consulta SQL"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="Origem OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos os Direitos Reservados; http://www.microsoft.com/sql/support;7"
+              description="Origem OLE DB"
+              name="Execucao Consulta SQL"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="O tempo em segundos antes que um comando expire. Zero indica uma expiração infinita."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica o nome do objeto de banco de dados usado para abrir um conjunto de linhas."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Especifica a variável que contém o nome do objeto de banco de dados usado para abrir um conjunto de linhas."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="O comando SQL a ser executado."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT'001' AS CODIGO, 'Fáb. Rio de Janeiro' AS DESCRITOR
+UNION
+SELECT'002' AS CODIGO, 'Fáb. São Paulo' AS DESCRITOR
+UNION
+SELECT'003' AS CODIGO, 'Fáb. da Bahia' AS DESCRITOR
+UNION
+SELECT'005' AS CODIGO, 'Fábrica de Teste' AS DESCRITOR
+UNION
+SELECT'006' AS CODIGO, 'Fábrica de Teste' AS DESCRITOR</property>
+                <property
+                  dataType="System.String"
+                  description="A variável que contém o comando SQL a ser executado."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica a página de código de coluna a ser usada quando não há informações de página de código disponíveis a partir da fonte de dados."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forca o uso do valor da propriedade DefaultCodePage durante a descrição dos dados de caractere."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica o modo usado para acessar o banco de dados."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="Os mapeamentos entre os parâmetros no comando SQL e as variáveis."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Criação da Dimensão Fábrica\Execucao Consulta SQL.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Conexão com o Datawarehouse]"
+                  connectionManagerRefId="Package.ConnectionManagers[Conexão com o Datawarehouse]"
+                  description="A conexão de tempo de execução OLE DB usada para acessar o banco de dados."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Criação da Dimensão Fábrica\Execucao Consulta SQL.Outputs[Saída de Origem OLE DB]"
+                  name="Saída de Origem OLE DB">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Criação da Dimensão Fábrica\Execucao Consulta SQL.Outputs[Saída de Origem OLE DB].Columns[CODIGO]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Criação da Dimensão Fábrica\Execucao Consulta SQL.Outputs[Saída de Origem OLE DB].ExternalColumns[CODIGO]"
+                      length="3"
+                      lineageId="Package\Criação da Dimensão Fábrica\Execucao Consulta SQL.Outputs[Saída de Origem OLE DB].Columns[CODIGO]"
+                      name="CODIGO"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Criação da Dimensão Fábrica\Execucao Consulta SQL.Outputs[Saída de Origem OLE DB].Columns[DESCRITOR]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Criação da Dimensão Fábrica\Execucao Consulta SQL.Outputs[Saída de Origem OLE DB].ExternalColumns[DESCRITOR]"
+                      length="22"
+                      lineageId="Package\Criação da Dimensão Fábrica\Execucao Consulta SQL.Outputs[Saída de Origem OLE DB].Columns[DESCRITOR]"
+                      name="DESCRITOR"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Criação da Dimensão Fábrica\Execucao Consulta SQL.Outputs[Saída de Origem OLE DB].ExternalColumns[CODIGO]"
+                      codePage="1252"
+                      dataType="str"
+                      length="3"
+                      name="CODIGO" />
+                    <externalMetadataColumn
+                      refId="Package\Criação da Dimensão Fábrica\Execucao Consulta SQL.Outputs[Saída de Origem OLE DB].ExternalColumns[DESCRITOR]"
+                      codePage="1252"
+                      dataType="str"
+                      length="19"
+                      name="DESCRITOR" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Criação da Dimensão Fábrica\Execucao Consulta SQL.Outputs[Saída de Erro de Origem OLE DB]"
+                  isErrorOut="true"
+                  name="Saída de Erro de Origem OLE DB">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Criação da Dimensão Fábrica\Execucao Consulta SQL.Outputs[Saída de Erro de Origem OLE DB].Columns[CODIGO]"
+                      codePage="1252"
+                      dataType="str"
+                      length="3"
+                      lineageId="Package\Criação da Dimensão Fábrica\Execucao Consulta SQL.Outputs[Saída de Erro de Origem OLE DB].Columns[CODIGO]"
+                      name="CODIGO" />
+                    <outputColumn
+                      refId="Package\Criação da Dimensão Fábrica\Execucao Consulta SQL.Outputs[Saída de Erro de Origem OLE DB].Columns[DESCRITOR]"
+                      codePage="1252"
+                      dataType="str"
+                      length="19"
+                      lineageId="Package\Criação da Dimensão Fábrica\Execucao Consulta SQL.Outputs[Saída de Erro de Origem OLE DB].Columns[DESCRITOR]"
+                      name="DESCRITOR" />
+                    <outputColumn
+                      refId="Package\Criação da Dimensão Fábrica\Execucao Consulta SQL.Outputs[Saída de Erro de Origem OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Criação da Dimensão Fábrica\Execucao Consulta SQL.Outputs[Saída de Erro de Origem OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Criação da Dimensão Fábrica\Execucao Consulta SQL.Outputs[Saída de Erro de Origem OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Criação da Dimensão Fábrica\Execucao Consulta SQL.Outputs[Saída de Erro de Origem OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Criação da Dimensão Fábrica\Inserir Destino"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="Destino OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos os Direitos Reservados; http://www.microsoft.com/sql/support;4"
+              description="Destino OLE DB"
+              name="Inserir Destino"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="O tempo em segundos antes que um comando expire. Zero indica uma expiração infinita."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica o nome do objeto de banco de dados usado para abrir um conjunto de linhas."
+                  name="OpenRowset">[dbo].[Dim_Fabrica]</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica a variável que contém o nome do objeto de banco de dados usado para abrir um conjunto de linhas."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="O comando SQL a ser executado."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica a página de código de coluna a ser usada quando não há informações de página de código disponíveis a partir da fonte de dados."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forca o uso do valor da propriedade DefaultCodePage durante a descrição dos dados de caractere."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica o modo usado para acessar o banco de dados."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica se os valores fornecidos para colunas de identidade serão copiados no destino. Se false, os valores para colunas de identidade serão gerados automaticamente no destino. Aplicável apenas se o carregamento rápido estiver ativado."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica se as colunas que contêm null terão null inserido no destino. Se false, as colunas que contêm null terão seus valores padrão inseridos no destino. Aplicável apenas se o carregamento rápido estiver ativado."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica as opções a serem usadas com o carregamento rápido. Aplicável apenas se o carregamento rápido estiver ativado."
+                  name="FastLoadOptions"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica quando confirmações são emitidas durante a inserção de dados. Um valor de 0 especifica que uma confirmação será emitida ao final da inserção de dados. Aplicável somente se o carregamento rápido estiver ativado."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Criação da Dimensão Fábrica\Inserir Destino.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Conexão com o Datawarehouse]"
+                  connectionManagerRefId="Package.ConnectionManagers[Conexão com o Datawarehouse]"
+                  description="A conexão de tempo de execução OLE DB usada para acessar o banco de dados."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Criação da Dimensão Fábrica\Inserir Destino.Inputs[Entrada de Destino OLE DB]"
+                  errorOrTruncationOperation="Inserir"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Entrada de Destino OLE DB">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Criação da Dimensão Fábrica\Inserir Destino.Inputs[Entrada de Destino OLE DB].Columns[Cod_Fabrica]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Cod_Fabrica"
+                      externalMetadataColumnId="Package\Criação da Dimensão Fábrica\Inserir Destino.Inputs[Entrada de Destino OLE DB].ExternalColumns[Cod_Fabrica]"
+                      lineageId="Package\Criação da Dimensão Fábrica\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[Cod_Fabrica]" />
+                    <inputColumn
+                      refId="Package\Criação da Dimensão Fábrica\Inserir Destino.Inputs[Entrada de Destino OLE DB].Columns[Desc_Fabrica]"
+                      cachedDataType="wstr"
+                      cachedLength="200"
+                      cachedName="Desc_Fabrica"
+                      externalMetadataColumnId="Package\Criação da Dimensão Fábrica\Inserir Destino.Inputs[Entrada de Destino OLE DB].ExternalColumns[Desc_Fabrica]"
+                      lineageId="Package\Criação da Dimensão Fábrica\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[Desc_Fabrica]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Criação da Dimensão Fábrica\Inserir Destino.Inputs[Entrada de Destino OLE DB].ExternalColumns[Cod_Fabrica]"
+                      dataType="wstr"
+                      length="50"
+                      name="Cod_Fabrica" />
+                    <externalMetadataColumn
+                      refId="Package\Criação da Dimensão Fábrica\Inserir Destino.Inputs[Entrada de Destino OLE DB].ExternalColumns[Desc_Fabrica]"
+                      dataType="wstr"
+                      length="200"
+                      name="Desc_Fabrica" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Criação da Dimensão Fábrica\Inserir Destino.Outputs[Saída de Erro de Destino OLE DB]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Saída de Erro de Destino OLE DB"
+                  synchronousInputId="Package\Criação da Dimensão Fábrica\Inserir Destino.Inputs[Entrada de Destino OLE DB]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Criação da Dimensão Fábrica\Inserir Destino.Outputs[Saída de Erro de Destino OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Criação da Dimensão Fábrica\Inserir Destino.Outputs[Saída de Erro de Destino OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Criação da Dimensão Fábrica\Inserir Destino.Outputs[Saída de Erro de Destino OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Criação da Dimensão Fábrica\Inserir Destino.Outputs[Saída de Erro de Destino OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Criação da Dimensão Fábrica.Paths[Nova Saída]"
+              endId="Package\Criação da Dimensão Fábrica\Inserir Destino.Inputs[Entrada de Destino OLE DB]"
+              name="Nova Saída"
+              startId="Package\Criação da Dimensão Fábrica\Dimensão de Alteração Lenta.Outputs[Nova Saída]" />
+            <path
+              refId="Package\Criação da Dimensão Fábrica.Paths[Saída de Atualizações de Atributo de Alteração]"
+              endId="Package\Criação da Dimensão Fábrica\Comando OLE DB 1.Inputs[Entrada de Comando OLE DB]"
+              name="Saída de Atualizações de Atributo de Alteração"
+              startId="Package\Criação da Dimensão Fábrica\Dimensão de Alteração Lenta.Outputs[Saída de Atualizações de Atributo de Alteração]" />
+            <path
+              refId="Package\Criação da Dimensão Fábrica.Paths[Saída de Atualizações de Membro Inferido]"
+              endId="Package\Criação da Dimensão Fábrica\Comando OLE DB.Inputs[Entrada de Comando OLE DB]"
+              name="Saída de Atualizações de Membro Inferido"
+              startId="Package\Criação da Dimensão Fábrica\Dimensão de Alteração Lenta.Outputs[Saída de Atualizações de Membro Inferido]" />
+            <path
+              refId="Package\Criação da Dimensão Fábrica.Paths[Saída de Conversão de Dados]"
+              endId="Package\Criação da Dimensão Fábrica\Dimensão de Alteração Lenta.Inputs[Entrada de Dimensão de Alteração Lenta]"
+              name="Saída de Conversão de Dados"
+              startId="Package\Criação da Dimensão Fábrica\Conversão de Dados.Outputs[Saída de Conversão de Dados]" />
+            <path
+              refId="Package\Criação da Dimensão Fábrica.Paths[Saída de Origem OLE DB]"
+              endId="Package\Criação da Dimensão Fábrica\Conversão de Dados.Inputs[Entrada de Conversão de Dados]"
+              name="Saída de Origem OLE DB"
+              startId="Package\Criação da Dimensão Fábrica\Execucao Consulta SQL.Outputs[Saída de Origem OLE DB]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--Esta seção CDATA contém as informações de layout do pacote. A seção inclui informações como coordenadas (x,y), largura e altura.-->
+<!--Se você editar manualmente esta seção e cometer algum erro, poderá excluí-la. -->
+<!--O pacote ainda poderá ser carregado normalmente, mas as informações de layout anteriores serão perdidas e o designer reorganizará automaticamente os elementos na superfície de design.-->
+<Objects
+  Version="8">
+  <!--Cada nó abaixo conterá propriedades que não afetam o comportamento em tempo de execução.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="212.8,41.6"
+          Id="Package\Criação da Dimensão Cliente"
+          TopLeft="326.428576987617,78.7647069869982" />
+        <NodeLayout
+          Size="184.8,41.6"
+          Id="Package\Criação da Dimensão Fábrica"
+          TopLeft="55.5000008514948,77.3823539492994" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Criação da Dimensão Cliente">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="155.2,41.6"
+          Id="Package\Criação da Dimensão Cliente\Planilha de Clientes"
+          TopLeft="93.5714301649401,21.4117650061743" />
+        <NodeLayout
+          Size="225.6,41.6"
+          Id="Package\Criação da Dimensão Cliente\Extração de Cidade e Estado juntos"
+          TopLeft="56.4285723895442,107.058825030871" />
+        <EdgeLayout
+          Id="Package\Criação da Dimensão Cliente.Paths[Saída de Origem do Excel]"
+          TopLeft="170.200001277242,63.0117650061743">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,44.0470600246971"
+              Start="0,0"
+              End="0,36.5470600246971">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,36.5470600246971" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-8,10.2735300123486,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="219.2,44"
+          Id="Package\Criação da Dimensão Cliente\Extração da Cidadade e do Estado separados"
+          TopLeft="62.1428582011438,192.705885055569" />
+        <EdgeLayout
+          Id="Package\Criação da Dimensão Cliente.Paths[Saída de Coluna Derivada]"
+          TopLeft="170.485715295344,148.658825030871">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,44.0470600246971"
+              Start="0,0"
+              End="0,36.5470600246971">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,36.5470600246971" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-8,10.2735300123485,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="155.2,41.6"
+          Id="Package\Criação da Dimensão Cliente\Coluna Derivada"
+          TopLeft="393.57143527391,198.058826307112" />
+        <EdgeLayout
+          Id="Package\Criação da Dimensão Cliente.Paths[Saída de Coluna Derivada1]"
+          TopLeft="281.342858201144,216.78235568134">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="112.228577072766,0"
+              Start="0,0"
+              End="104.728577072766,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="104.728577072766,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="44.3642885363832,5,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Criação da Dimensão Cliente\Planilha de Clientes">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Criação da Dimensão Fábrica">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="188,41.6"
+          Id="Package\Criação da Dimensão Fábrica\Execucao Consulta SQL"
+          TopLeft="432.1,5.49999999999984" />
+        <NodeLayout
+          Size="175.2,41.6"
+          Id="Package\Criação da Dimensão Fábrica\Conversão de Dados"
+          TopLeft="438.5,107.1" />
+        <EdgeLayout
+          Id="Package\Criação da Dimensão Fábrica.Paths[Saída de Origem OLE DB]"
+          TopLeft="526.1,47.0999999999998">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,59.9999999999999"
+              Start="0,0"
+              End="0,52.4999999999999">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.4999999999999" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="216,41.6"
+          Id="Package\Criação da Dimensão Fábrica\Dimensão de Alteração Lenta"
+          TopLeft="418.1,208.7" />
+        <EdgeLayout
+          Id="Package\Criação da Dimensão Fábrica.Paths[Saída de Conversão de Dados]"
+          TopLeft="526.1,148.7">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="147.2,41.6"
+          Id="Package\Criação da Dimensão Fábrica\Inserir Destino"
+          TopLeft="124.801585382345,317.947058930776" />
+        <EdgeLayout
+          Id="Package\Criação da Dimensão Fábrica.Paths[Nova Saída]"
+          TopLeft="474.1,250.3">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-275.698414617655,67.6470589307766"
+              Start="0,0"
+              End="-275.698414617655,60.1470589307766">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,19.0989957324603" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,19.0989957324603"
+                    Point2="0,23.0989957324603"
+                    Point3="-4,23.0989957324603" />
+                  <mssgle:LineSegment
+                    End="-271.698414617655,23.0989957324603" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-271.698414617655,23.0989957324603"
+                    Point2="-275.698414617655,23.0989957324603"
+                    Point3="-275.698414617655,27.0989957324603" />
+                  <mssgle:LineSegment
+                    End="-275.698414617655,60.1470589307766" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-162.842566683828,28.0989957324603,49.98671875,10.3349609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="161.6,41.6"
+          Id="Package\Criação da Dimensão Fábrica\Comando OLE DB"
+          TopLeft="443.712698385667,389.306536519697" />
+        <EdgeLayout
+          Id="Package\Criação da Dimensão Fábrica.Paths[Saída de Atualizações de Membro Inferido]"
+          TopLeft="525.306349192833,250.3">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,139.006536519697"
+              Start="0,0"
+              End="0,131.506536519697">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,131.506536519697" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-93.5976953125,59.6287565410986,187.195390625,12.2490234375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="171.2,41.6"
+          Id="Package\Criação da Dimensão Fábrica\Comando OLE DB 1"
+          TopLeft="756.357142735501,311.999346429061" />
+        <EdgeLayout
+          Id="Package\Criação da Dimensão Fábrica.Paths[Saída de Atualizações de Atributo de Alteração]"
+          TopLeft="578.1,250.3">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="263.857142735501,61.6993464290614"
+              Start="0,0"
+              End="263.857142735501,54.1993464290614">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,17.0680695123624" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,17.0680695123624"
+                    Point2="0,21.0680695123624"
+                    Point3="4,21.0680695123624" />
+                  <mssgle:LineSegment
+                    End="259.857142735501,21.0680695123624" />
+                  <mssgle:CubicBezierSegment
+                    Point1="259.857142735501,21.0680695123624"
+                    Point2="263.857142735501,21.0680695123624"
+                    Point3="263.857142735501,25.0680695123624" />
+                  <mssgle:LineSegment
+                    End="263.857142735501,54.1993464290614" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="28.5658760552504,26.0680695123624,206.725390625,12.2490234375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Criação da Dimensão Fábrica\Dimensão de Alteração Lenta">
+    <Properties>
+      <Property>
+        <Name>SCDMetadata</Name>
+        <Value
+          type="q2:string">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;SCDWizardMetadata xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;ConnectionID&gt;{6CAD8384-03C2-4B45-B8D7-AF34080A4FA2}&lt;/ConnectionID&gt;
+  &lt;TableName&gt;[dbo].[Dim_Fabrica]&lt;/TableName&gt;
+  &lt;InputToColumnsCollection&gt;
+    &lt;InputColumnToDBColumn&gt;
+      &lt;IdentificationString&gt;Conversão de Dados.Saídas[Saída de Conversão de Dados].Colunas[Cod_Fabrica]&lt;/IdentificationString&gt;
+      &lt;ColumnName&gt;Cod_Fabrica&lt;/ColumnName&gt;
+      &lt;KeyType&gt;BusinessKey&lt;/KeyType&gt;
+      &lt;ChangeType&gt;None&lt;/ChangeType&gt;
+    &lt;/InputColumnToDBColumn&gt;
+    &lt;InputColumnToDBColumn&gt;
+      &lt;IdentificationString&gt;Conversão de Dados.Saídas[Saída de Conversão de Dados].Colunas[Desc_Fabrica]&lt;/IdentificationString&gt;
+      &lt;ColumnName&gt;Desc_Fabrica&lt;/ColumnName&gt;
+      &lt;KeyType&gt;None&lt;/KeyType&gt;
+      &lt;ChangeType&gt;ChangingAttribute&lt;/ChangeType&gt;
+    &lt;/InputColumnToDBColumn&gt;
+  &lt;/InputToColumnsCollection&gt;
+  &lt;GeneratedComponentsIdentificationStrings&gt;
+    &lt;anyType xsi:type="xsd:string"&gt;Inserir Destino&lt;/anyType&gt;
+    &lt;anyType xsi:type="xsd:string"&gt;Comando OLE DB&lt;/anyType&gt;
+    &lt;anyType xsi:type="xsd:string"&gt;Comando OLE DB 1&lt;/anyType&gt;
+  &lt;/GeneratedComponentsIdentificationStrings&gt;
+  &lt;FailFixedAttribute&gt;false&lt;/FailFixedAttribute&gt;
+  &lt;FailChangeAttribute&gt;false&lt;/FailChangeAttribute&gt;
+  &lt;UseStartEndDate&gt;false&lt;/UseStartEndDate&gt;
+  &lt;CurrentIndicatorColumn /&gt;
+  &lt;InferredIndicatorColumn /&gt;
+  &lt;ValueCurrent /&gt;
+  &lt;ValueExpired /&gt;
+  &lt;StartDateColumn /&gt;
+  &lt;EndDateColumn /&gt;
+  &lt;DateVariable /&gt;
+  &lt;EnableInferredSupport&gt;true&lt;/EnableInferredSupport&gt;
+&lt;/SCDWizardMetadata&gt;</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Criação da Dimensão Fábrica\Execucao Consulta SQL">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
