@@ -28,7 +28,6 @@ C:\Users\Admin\Documents\GitHub\DatawarehouseSucos\DatawarehouseSucos\bin\Debug\
 C:\Users\Admin\Documents\GitHub\DatawarehouseSucos\DatawarehouseSucos\obj\Debug\DatawarehouseSucos.dll
 C:\Users\Admin\Documents\GitHub\DatawarehouseSucos\DatawarehouseSucos\obj\Debug\DatawarehouseSucos.pdb
 C:\Users\Admin\Documents\GitHub\DatawarehouseSucos\DatawarehouseSucos\obj\Debug\Model.xml
-C:\Users\Admin\Documents\GitHub\DatawarehouseSucos\DatawarehouseSucos\obj\Debug\DatawarehouseSucos.sqlprojAssemblyReference.cache
 C:\Users\Admin\Documents\GitHub\DatawarehouseSucos\DatawarehouseSucos\obj\Debug\refactor.xml
 C:\Users\Admin\Documents\GitHub\DatawarehouseSucos\DatawarehouseSucos\obj\Debug\postdeploy.sql
 C:\Users\Admin\Documents\GitHub\DatawarehouseSucos\DatawarehouseSucos\obj\Debug\predeploy.sql
